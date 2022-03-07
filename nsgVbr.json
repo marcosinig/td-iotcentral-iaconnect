@@ -47,17 +47,43 @@
               "priority": 1030,
               "direction": "Inbound"
             }
-          },
+          },        
           {
-            "name": "allow-inbound-rdp",
+            "name": "allow-inbound-ssh",
             "properties": {
               "protocol": "Tcp",
               "sourcePortRange": "*",
-              "destinationPortRange": "3389",
+              "destinationPortRange": "22",
               "sourceAddressPrefix": "Internet",
               "destinationAddressPrefix": "*",
               "access": "Allow",
-              "priority": 1020,
+              "priority": 1040,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "allow-inbound-http",
+            "properties": {
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "8080",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1050,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "allow-inbound-mqtt",
+            "properties": {
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "30815",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1060,
               "direction": "Inbound"
             }
           }

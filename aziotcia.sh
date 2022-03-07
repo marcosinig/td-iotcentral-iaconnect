@@ -17,6 +17,8 @@ IOT_CENTRAL_TEMPLATE=${12}
 RESOURCE_GROUP_NAME=${13}
 DOCKER_HUB_USERNAME=${14}
 DOCKER_HUB_PASSWORD=${15}
+GIT_TOKEN=${16}
+VM_DOMAIN_NAME=${17}
 
 sudo apt-get -y update 
 sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg 
@@ -33,6 +35,8 @@ APP_ID=$(az iot central app list -g $RESOURCE_GROUP_NAME | grep application | aw
 
 az iot central user create --user-id $USER_OBJECT_ID --app-id $APP_ID --email $USER_EMAIL --role admin
 
+echo "Setting up nginix..."
+git clone https://$GIT_TOKEN@github.com/marcosinig/td-iaconnect.git
 
 
 echo "Setting up your mobiusflow cloud instance..."

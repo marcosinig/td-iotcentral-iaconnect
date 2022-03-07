@@ -21,33 +21,7 @@
         "displayName": "Network Security Group"
       },
       "properties": {
-        "securityRules": [
-          {
-            "name": "allow-inbound-cloudgw-tcp",
-            "properties": {
-              "protocol": "Tcp",
-              "sourcePortRange": "*",
-              "destinationPortRange": "6180",
-              "sourceAddressPrefix": "Internet",
-              "destinationAddressPrefix": "*",
-              "access": "Allow",
-              "priority": 1010,
-              "direction": "Inbound"
-            }
-          },
-          {
-            "name": "allow-inbound-cloudgw-udp",
-            "properties": {
-              "protocol": "Udp",
-              "sourcePortRange": "*",
-              "destinationPortRange": "6180",
-              "sourceAddressPrefix": "Internet",
-              "destinationAddressPrefix": "*",
-              "access": "Allow",
-              "priority": 1030,
-              "direction": "Inbound"
-            }
-          },        
+        "securityRules": [         
           {
             "name": "allow-inbound-ssh",
             "properties": {
@@ -66,11 +40,24 @@
             "properties": {
               "protocol": "Tcp",
               "sourcePortRange": "*",
-              "destinationPortRange": "8080",
+              "destinationPortRange": "80",
               "sourceAddressPrefix": "Internet",
               "destinationAddressPrefix": "*",
               "access": "Allow",
               "priority": 1050,
+              "direction": "Inbound"
+            }
+          },
+          {
+            "name": "allow-inbound-https",
+            "properties": {
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "443",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1060,
               "direction": "Inbound"
             }
           },
@@ -83,7 +70,7 @@
               "sourceAddressPrefix": "Internet",
               "destinationAddressPrefix": "*",
               "access": "Allow",
-              "priority": 1060,
+              "priority": 1070,
               "direction": "Inbound"
             }
           }

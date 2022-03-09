@@ -38,7 +38,7 @@ APP_ID=$(az iot central app list -g $RESOURCE_GROUP_NAME | grep application | aw
 
 az iot central user create --user-id $USER_OBJECT_ID --app-id $APP_ID --email $USER_EMAIL --role admin
 
-IOT_OPERATOR_TOKEN=$(az iot central api-token create --token-id adfdasfdsf --app-id $APP_ID --role admin | jq '.token' |  sed 's/^"\(.*\)".*/\1/')
+IOT_OPERATOR_TOKEN=$(az iot central api-token create --token-id adfdasfdsf --app-id $APP_ID --role admin | jq '.token' )
 
 echo "Setting up nginix..."
 git clone https://$GIT_TOKEN@github.com/marcosinig/td-iaconnect.git

@@ -19,9 +19,12 @@ DOCKER_HUB_USERNAME=${14}
 DOCKER_HUB_PASSWORD=${15}
 GIT_TOKEN=${16}
 VM_DOMAIN_NAME=${17}
+MOBIUS_LICENSE=${18}
+
+echo "Script v2"
 
 sudo apt-get -y update 
-sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg 
+sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg jq
 
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
@@ -35,9 +38,12 @@ APP_ID=$(az iot central app list -g $RESOURCE_GROUP_NAME | grep application | aw
 
 az iot central user create --user-id $USER_OBJECT_ID --app-id $APP_ID --email $USER_EMAIL --role admin
 
+IOT_OPERATOR_TOKEN=$(az iot central api-token create --token-id adfdasfdsf --app-id $APP_ID --role admin | jq '.token' |  sed 's/^"\(.*\)".*/\1/')
+
 echo "Setting up nginix..."
 git clone https://$GIT_TOKEN@github.com/marcosinig/td-iaconnect.git
-
+export hostname=$VM_DOMAIN_NAME
+td-iaconnect/setup-https.sh
 
 echo "Setting up your mobiusflow cloud instance..."
 echo ""
@@ -67,6 +73,9 @@ services:
     privileged: false
     restart: always
     environment:
+      - IOT_APP_NAME=IOT_APP_NAME_X
+      - MOBIUS_LICENSE=MOBIUS_LICENSE_X
+      - IOT_OPERATOR_TOKEN=IOT_OPERATOR_TOKEN_X
       - MOBIUS_HUB_RESET_PSKS=true
       - MOBIUS_ENABLE_CONFIG_UI=true
     #      - MOBIUS_HUB_ID=000001
@@ -74,10 +83,14 @@ services:
       - 8080:8080
       - 1883:1883
       - 30814:30815
-      - 30817:30817
+      - 30816:30817
     volumes:
       - mobius-data:/data
 EOF
+
+sed -i "s/IOT_APP_NAME_X/$IOT_CENTRAL_NAME/" docker-compose.yml
+sed -i "s/MOBIUS_LICENSE_X/$MOBIUS_LICENSE/" docker-compose.yml
+sed -i "s/IOT_OPERATOR_TOKEN_X/$IOT_OPERATOR_TOKEN/" docker-compose.yml
 
 rm -rf ~/mobius-cloud-install
 

@@ -73,6 +73,19 @@
               "priority": 1070,
               "direction": "Inbound"
             }
+          },
+          {
+            "name": "allow-inbound-mqtt",
+            "properties": {
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "30817",
+              "sourceAddressPrefix": "Internet",
+              "destinationAddressPrefix": "*",
+              "access": "Allow",
+              "priority": 1070,
+              "direction": "Inbound"
+            }
           }
         ]
       }

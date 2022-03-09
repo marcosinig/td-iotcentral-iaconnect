@@ -43,7 +43,8 @@ IOT_OPERATOR_TOKEN=$(az iot central api-token create --token-id adfdasfdsf --app
 echo "Setting up nginix..."
 git clone https://$GIT_TOKEN@github.com/marcosinig/td-iaconnect.git
 export hostname=$VM_DOMAIN_NAME
-td-iaconnect/setup-https.sh
+cd td-iaconnect; ./setup-https.sh; cd ..;
+echo "End nginix"
 
 echo "Setting up your mobiusflow cloud instance..."
 echo ""
@@ -88,9 +89,9 @@ services:
       - mobius-data:/data
 EOF
 
-sed -i "s/IOT_APP_NAME_X/$IOT_CENTRAL_NAME/" docker-compose.yml
-sed -i "s/MOBIUS_LICENSE_X/$MOBIUS_LICENSE/" docker-compose.yml
-sed -i "s/IOT_OPERATOR_TOKEN_X/$IOT_OPERATOR_TOKEN/" docker-compose.yml
+sed -i "s/IOT_APP_NAME_X/$IOT_CENTRAL_NAME/" ~/docker-compose.yml
+sed -i "s/MOBIUS_LICENSE_X/$MOBIUS_LICENSE/" ~/docker-compose.yml
+sed -i "s/IOT_OPERATOR_TOKEN_X/$IOT_OPERATOR_TOKEN/" ~/docker-compose.yml
 
 rm -rf ~/mobius-cloud-install
 

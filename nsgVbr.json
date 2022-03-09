@@ -75,7 +75,7 @@
             }
           },
           {
-            "name": "allow-inbound-mqtt",
+            "name": "allow-inbound-mqtt2",
             "properties": {
               "protocol": "Tcp",
               "sourcePortRange": "*",

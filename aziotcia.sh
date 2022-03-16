@@ -69,24 +69,32 @@ volumes:
   mobius-data:
 services:
   mobius:
-    image: mobiusflow/mobiusflow-cloud-demo:latest
-    container_name: mobiusflow-public
+    image: mobiusflow/mobiusflow-tdc2r:1.5.13-beta.2-119
+    container_name: mobiusflow
     privileged: false
     restart: always
     environment:
       - IOT_APP_NAME=IOT_APP_NAME_X
-      - MOBIUS_LICENSE=MOBIUS_LICENSE_X
       - IOT_OPERATOR_TOKEN=IOT_OPERATOR_TOKEN_X
+      - MOBIUS_LICENSE=MOBIUS_LICENSE_X      
       - MOBIUS_HUB_RESET_PSKS=true
       - MOBIUS_ENABLE_CONFIG_UI=true
-    #      - MOBIUS_HUB_ID=000001
+      - MOBIUS_HUB_ID=000001
+      - MOBIUS_LOCAL_TIMEOUT=10000
     ports:
       - 8080:8080
+      - 9082:9081
       - 1883:1883
-      - 30814:30815
-      - 30816:30817
     volumes:
       - mobius-data:/data
+    
+  tdc2rsetup:
+    container_name: tdc2rsetup
+    image: mobiusflow/td-c2r-quick-setup:0.0.1-alpha.1-47
+    privileged: false
+    restart: always
+    ports:
+      - 8082:8080
 EOF
 
 sed -i "s/IOT_APP_NAME_X/$IOT_CENTRAL_NAME/" ~/docker-compose.yml

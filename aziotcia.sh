@@ -22,6 +22,8 @@ VM_DOMAIN_NAME=${17}
 MOBIUS_LICENSE=${18}
 
 echo "Script v2"
+echo "force application id enabled"
+IOT_CENTRAL_TEMPLATE=eeb496d2-6f0a-49b1-bbb2-2e4ab5933633
 
 sudo apt-get -y update 
 sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg jq
@@ -32,7 +34,7 @@ az extension add --name azure-iot
 
 az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
 
-az iot central app create -n $IOT_CENTRAL_NAME -g $RESOURCE_GROUP_NAME -s $IOT_CENTRAL_SUBDOMAIN -l $IOT_CENTRAL_LOCATION -p $IOT_CENTRAL_SKU -t 96b39d69-7276-4616-a011-4d12c679b44e
+az iot central app create -n $IOT_CENTRAL_NAME -g $RESOURCE_GROUP_NAME -s $IOT_CENTRAL_SUBDOMAIN -l $IOT_CENTRAL_LOCATION -p $IOT_CENTRAL_SKU -t $IOT_CENTRAL_TEMPLATE
 
 APP_ID=$(az iot central app list -g $RESOURCE_GROUP_NAME | grep application | awk '{print $2}'| sed 's/^"\(.*\)".*/\1/')
 

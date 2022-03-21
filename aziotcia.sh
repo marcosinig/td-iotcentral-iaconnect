@@ -69,7 +69,7 @@ volumes:
   mobius-data:
 services:
   mobius:
-    image: mobiusflow/mobiusflow-tdc2r:1.5.13-beta.2-119
+    image: mobiusflow/mobiusflow-tdc2r:1.5.13-beta.2-122
     container_name: mobiusflow
     privileged: false
     restart: always

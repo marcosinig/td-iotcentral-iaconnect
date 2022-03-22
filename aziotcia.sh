@@ -76,9 +76,9 @@ services:
     privileged: false
     restart: always
     environment:
-      - IOT_APP_NAME=IOT_APP_NAME_X
-      - IOT_OPERATOR_TOKEN=IOT_OPERATOR_TOKEN_X
-      - MOBIUS_LICENSE=MOBIUS_LICENSE_X      
+      - IOT_APP_NAME=$IOT_CENTRAL_NAME
+      - IOT_OPERATOR_TOKEN=$IOT_OPERATOR_TOKEN
+      - MOBIUS_LICENSE=$MOBIUS_LICENSE    
       - MOBIUS_HUB_RESET_PSKS=true
       - MOBIUS_ENABLE_CONFIG_UI=true
       - MOBIUS_HUB_ID=000001
@@ -98,10 +98,6 @@ services:
     ports:
       - 8082:8080
 EOF
-
-sed -i "s/IOT_APP_NAME_X/$IOT_CENTRAL_NAME/" ~/docker-compose.yml
-sed -i "s/MOBIUS_LICENSE_X/$MOBIUS_LICENSE/" ~/docker-compose.yml
-sed -i "s/IOT_OPERATOR_TOKEN_X/$IOT_OPERATOR_TOKEN/" ~/docker-compose.yml
 
 rm -rf ~/mobius-cloud-install
 

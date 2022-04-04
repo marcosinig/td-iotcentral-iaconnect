@@ -23,8 +23,8 @@ MOBIUS_LICENSE=${18}
 
 echo "Script v2"
 echo "force application id enabled"
-IOT_CENTRAL_TEMPLATE=74c0558c-6e44-49c7-a7f8-1be38cab2d2d
-
+IOT_CENTRAL_TEMPLATE=43123d85-40b9-4d89-860c-d149ab0f1e09
+                     
 sudo apt-get -y update 
 sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg jq
 
@@ -78,7 +78,7 @@ services:
     environment:
       - IOT_APP_NAME=$IOT_CENTRAL_NAME
       - IOT_OPERATOR_TOKEN=$IOT_OPERATOR_TOKEN
-      - MOBIUS_LICENSE=$MOBIUS_LICENSE    
+      - MOBIUS_LICENCE=$MOBIUS_LICENSE    
       - MOBIUS_HUB_RESET_PSKS=true
       - MOBIUS_ENABLE_CONFIG_UI=true
       - MOBIUS_HUB_ID=000001

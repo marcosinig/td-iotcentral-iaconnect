@@ -71,7 +71,7 @@ volumes:
   mobius-data:
 services:
   mobius:
-    image: mobiusflow/mobiusflow-tdc2r:1.5.13-beta.2-122
+    image: mobiusflow/mobiusflow-tdc2r:1.7.0-alpha.1-138
     container_name: mobiusflow
     privileged: false
     restart: always
@@ -92,7 +92,7 @@ services:
     
   tdc2rsetup:
     container_name: tdc2rsetup
-    image: mobiusflow/td-c2r-quick-setup:0.0.1-alpha.1-47
+    image: mobiusflow/td-c2r-quick-setup:0.0.1-alpha.1-48
     privileged: false
     restart: always
     ports:

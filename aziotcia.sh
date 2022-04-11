@@ -23,7 +23,7 @@ MOBIUS_LICENSE=${18}
 
 echo "Script v2"
 echo "force application id enabled"
-IOT_CENTRAL_TEMPLATE=fdf72d44-d6f0-4ebe-9b30-6e02287bd3a4
+IOT_CENTRAL_TEMPLATE=c32bf085-ba71-4f33-8515-775c90ddb06c
                      
 sudo apt-get -y update 
 sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg jq

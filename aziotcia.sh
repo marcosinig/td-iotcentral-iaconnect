@@ -27,6 +27,9 @@ IOT_CENTRAL_TEMPLATE=3056c9d1-7014-4e34-8277-6777fe1a8bda
                      
 sudo apt-get -y update 
 sudo apt-get -y install ca-certificates curl apt-transport-https lsb-release gnupg jq
+echo "installing jq.."
+sudo apt-get -y install jq
+sudo apt -y install jq
 
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
